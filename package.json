@@ -1,9 +1,10 @@
 {
-  "name": "bs-web",
-  "version": "1.1.19",
-  "description": "BetterSolano.org - Official Portal for LGU Solano",
+  "name": "bettersantamaria-web",
+  "version": "1.0.0",
+  "description": "BetterSantaMaria.org - Civic Portal for LGU Santa Maria, Bulacan",
   "scripts": {
     "dev": "python3 -m http.server 8000",
+    "admin": "node scripts/admin-server.mjs",
     "build": "bash build.sh",
     "build:major": "bash scripts/version.sh major && bash build.sh --no-bump",
     "build:minor": "bash scripts/version.sh minor && bash build.sh --no-bump",
@@ -23,12 +24,13 @@
     "package:only": "bash scripts/package-cpanel.sh"
   },
   "keywords": [
-    "solano",
-    "nueva-vizcaya",
+    "santa-maria",
+    "bulacan",
     "government",
-    "lgu"
+    "lgu",
+    "civic-tech"
   ],
-  "author": "Ramon Logan Jr.",
+  "author": "Josiah Jezrael Guevarra",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.23.9",

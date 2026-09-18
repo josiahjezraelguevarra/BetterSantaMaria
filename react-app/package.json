@@ -1,6 +1,6 @@
 {
-  "name": "bettersolano-react",
-  "version": "1.1.19",
+  "name": "bettersantamaria-react",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

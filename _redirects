@@ -1,0 +1,4 @@
+﻿# Cloudflare Pages Redirects & Fallbacks
+# Format: /source /destination [status]
+# SPA / PWA fallback if needed:
+# /* /index.html 200

@@ -24,37 +24,19 @@ export default function Footer() {
           <div className="footer-brand">
             <img
               src="/assets/images/logo/better-solano-logo-white.svg"
-              alt="Better Solano logo"
+              alt="BetterSantaMaria.org logo"
               className="footer-logo"
             />
             <p className="footer-tagline">{t('footer-tagline')}</p>
             <div className="footer-social-new">
               <a
-                href="https://www.facebook.com/bettersolano.org"
+                href="https://github.com/josiahjezraelguevarra/BetterSantaMaria"
                 className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook"
+                aria-label="GitHub"
               >
-                <i className="bi bi-facebook"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/bettersolano/"
-                className="footer-social-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <i className="bi bi-linkedin"></i>
-              </a>
-              <a
-                href="https://discord.com/invite/qeSu7RJkjQ"
-                className="footer-social-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discord"
-              >
-                <i className="bi bi-discord"></i>
+                <i className="bi bi-github"></i>
               </a>
             </div>
           </div>
@@ -62,21 +44,16 @@ export default function Footer() {
             <h4>{t('footer-quick-links')}</h4>
             <ul className="footer-links-new">
               <li>
-                <a href="https://quiz.bettersolano.org/" target="_blank" rel="noopener noreferrer">
-                  {t('footer-solano-quiz')}
-                </a>
+                <a href="/services">{t('nav-services')}</a>
               </li>
               <li>
-                <a href="/sitemap-page">{t('footer-sitemap')}</a>
+                <a href="/government">{t('nav-government')}</a>
               </li>
               <li>
-                <a
-                  href="https://solano.gov.ph/wp-content/uploads/2025/10/As-of-October-21-2025-2.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('footer-citizens-charter')}
-                </a>
+                <a href="/statistics">{t('nav-statistics')}</a>
+              </li>
+              <li>
+                <a href="/budget">{t('nav-transparency')}</a>
               </li>
               <li>
                 <a href="/terms">{t('footer-terms')}</a>
@@ -86,9 +63,6 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/accessibility">{t('footer-accessibility')}</a>
-              </li>
-              <li>
-                <a href="/faq">{t('footer-faq')}</a>
               </li>
             </ul>
           </div>
@@ -103,29 +77,6 @@ export default function Footer() {
               <li>
                 <a href="https://www.foi.gov.ph/" target="_blank" rel="noopener noreferrer">
                   {t('footer-foi')}
-                </a>
-              </li>
-              <li>
-                <a href="https://solano.gov.ph/" target="_blank" rel="noopener noreferrer">
-                  {t('footer-lgu-portal')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://sangguniangbayan.solano.gov.ph/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('footer-sb')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.facebook.com/OfficialLguSolanoFanpage/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('footer-lgu-facebook')}
                 </a>
               </li>
               <li>
@@ -144,15 +95,12 @@ export default function Footer() {
             <div
               className="footer-cost"
               role="status"
-              aria-label="Cost to the People of Solano: Zero Pesos"
+              aria-label="Cost to the People of Santa Maria: Zero Pesos"
             >
               {t('footer-cost')} <span className="footer-cost-value">₱0</span>
             </div>
-            <a href="mailto:volunteer@bettersolano.org" className="footer-contribute">
-              <i className="bi bi-envelope-heart"></i> {t('footer-volunteer')}
-            </a>
             <a
-              href="https://github.com/BetterSolano/bettersolano"
+              href="https://github.com/josiahjezraelguevarra/BetterSantaMaria"
               className="footer-contribute"
               target="_blank"
               rel="noopener noreferrer"

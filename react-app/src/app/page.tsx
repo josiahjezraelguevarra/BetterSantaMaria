@@ -73,24 +73,20 @@ export default function HomePage() {
               <h2 className="appointment-cta-heading">{t('appointment-cta-heading')}</h2>
               <p className="appointment-cta-subtitle">{t('appointment-cta-subtitle')}</p>
               <div className="appointment-cta-actions">
-                <a
-                  href="https://solanomayorsoffice-oasys.com/user/auth/login.php"
+                <Link
+                  href="/services"
                   className="appointment-cta-btn appointment-cta-btn--primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
                   <i className="bi bi-calendar-check" aria-hidden="true"></i>{' '}
                   {t('appointment-schedule-btn')}
-                </a>
-                <a
-                  href="https://solanomayorsoffice-oasys.com/user/auth/register.php"
+                </Link>
+                <Link
+                  href="/contact"
                   className="appointment-cta-btn appointment-cta-btn--outline"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
-                  <i className="bi bi-person-plus" aria-hidden="true"></i>{' '}
-                  {t('appointment-create-btn')}
-                </a>
+                  <i className="bi bi-envelope" aria-hidden="true"></i>{' '}
+                  {t('nav-contact')}
+                </Link>
               </div>
             </div>
           </div>
@@ -271,16 +267,16 @@ export default function HomePage() {
                   data-map-loaded="iframe"
                 >
                   <iframe
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=121.1633%2C16.5017%2C121.2033%2C16.5317&layer=mapnik&marker=16.5167%2C121.1833"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=120.9310%2C14.7997%2C120.9910%2C14.8397&layer=mapnik&marker=14.8197%2C120.9610"
                     className="map-iframe"
-                    title="Map of Solano, Nueva Vizcaya"
-                    aria-label="OpenStreetMap showing Solano Municipal Hall, Nueva Vizcaya"
+                    title="Map of Santa Maria, Bulacan"
+                    aria-label="OpenStreetMap showing Santa Maria Municipal Hall, Bulacan"
                     loading="lazy"
                   ></iframe>
                 </div>
                 <p className="map-attribution">
-                  <i className="bi bi-geo-alt" aria-hidden="true"></i> Solano Municipal Hall, Nueva
-                  Vizcaya 3708
+                  <i className="bi bi-geo-alt" aria-hidden="true"></i> Santa Maria Municipal Hall,
+                  Poblacion, Santa Maria, Bulacan 3022
                 </p>
               </div>
             </div>

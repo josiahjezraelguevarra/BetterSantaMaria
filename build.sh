@@ -1,5 +1,5 @@
 #!/bin/bash
-# BetterSolano — Production Build Script
+# BetterSantaMaria — Production Build Script
 # Usage:
 #   bash build.sh            — bump patch, build everything
 #   bash build.sh --no-bump  — keep current version, build everything
@@ -22,7 +22,7 @@ done
 
 echo ""
 echo "╔══════════════════════════════════════════╗"
-echo "║   BetterSolano — Production Build        ║"
+echo "║   BetterSantaMaria — Production Build    ║"
 echo "╚══════════════════════════════════════════╝"
 
 # ── 0. Build-time configuration (optional .env, see .env.example) ────────────
@@ -68,6 +68,7 @@ if command -v rsync &>/dev/null; then
         --exclude='.DS_Store' \
         --exclude='react-app' \
         --exclude='admin' \
+        --exclude='backups' \
         --exclude='backup-restore-point-*' \
         --exclude='package*.json' \
         --exclude='build.sh' \
