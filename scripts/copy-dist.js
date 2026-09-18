@@ -15,6 +15,7 @@ const EXCLUDED = new Set([
   '.DS_Store',
   'react-app',
   'admin',
+  'backups',
   'build.sh',
   'babel.config.json',
   'serve.py',

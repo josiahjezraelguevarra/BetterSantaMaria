@@ -1,49 +1,36 @@
-# BetterSolano.org
+# BetterSantaMaria.org
 
-A civic-tech initiative providing transparent access to municipal services, programs, and public funds of LGU Solano, Nueva Vizcaya, Philippines.
+A civic-tech initiative providing transparent access to municipal services, programs, and public funds of LGU Santa Maria, Bulacan, Philippines.
 
-![Version](https://img.shields.io/badge/version-1.1.15-green)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-MIT%20%7C%20CC%20BY%204.0-blue)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-15.5-black?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-Pages%20%7C%20R2-F38020?logo=cloudflare&logoColor=white)
 
-## Version Notice
+## Overview
 
-A **React + TypeScript** version of BetterSolano.org is now available for contributors who prefer modern tooling and component-based architecture.
+BetterSantaMaria.org is a modernized, open-source civic portal built with **Next.js 15, React 18, and TypeScript**, configured for edge deployment on **Cloudflare Pages** and document storage via **Cloudflare R2**.
 
-| Version            | Branch             | Status             | Documentation                |
-| ------------------ | ------------------ | ------------------ | ---------------------------- |
-| Static HTML        | `main`             | Stable             | This README                  |
-| React + TypeScript | `react-typescript` | Active Development | [MIGRATION.md](MIGRATION.md) |
-
-Both versions are actively maintained. New contributors may choose either version based on their preference. For migration guidance, see [MIGRATION.md](MIGRATION.md).
+- **Municipality**: Santa Maria, Bulacan (Region III - Central Luzon)
+- **Official Barangays**: 24 Barangays
+- **Language Support**: Bilingual — English (`en`) & Filipino (`fil`)
+- **Cost to the People of Santa Maria**: ₱0
 
 ## Open Source for LGUs
 
-This repository is open source under the **MIT License** and **CC BY 4.0** and is freely available for use, modification, redistribution, and publication by any individual or organization that wishes to implement it in their respective local government unit (LGU) across the Philippines.
+This repository is dual-licensed under the **MIT License** and **CC BY 4.0**, forked from the pioneering civic-tech work of [BetterSolano.org](https://bettersolano.org) by Ramon Logan Jr. We encourage adoption by other municipalities in support of:
 
-We encourage adoption by other municipalities in support of:
-
-- **Transparency** - Making government information accessible to citizens
-- **Accessibility** - Ensuring services are available to all, including persons with disabilities
-- **Modernization** - Bringing local government services to digital platforms
+- **Transparency** - Making government budget, ordinances, and services accessible to citizens
+- **Accessibility** - Ensuring services are available to all, including persons with disabilities (WCAG 2.1)
+- **Modernization** - Bringing local government services to digital platforms with zero server costs
 - **Public Service** - Improving the delivery of government services to the community
-
-To adapt this project for your LGU, fork the repository and customize the content, styling, and data sources to match your municipality's requirements.
 
 ## About
 
-BetterSolano.org is a volunteer-driven, open-source project that empowers the people of Solano with easy access to local government information. The platform aggregates public data from official government portals and presents it in a user-friendly, accessible format.
+BetterSantaMaria.org empowers the citizens of Santa Maria, Bulacan with direct, mobile-first access to Citizen's Charter services, civil registry procedures, business permits, real property tax, and emergency hotlines.
 
-**Cost to the People of Solano = ₱0**
-
-## Live Demo
-
-Visit the live website: [https://bettersolano.org](https://bettersolano.org)
 
 ## Technology Stack
 

@@ -1,0 +1,1767 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Santa Maria Admin Studio · Flat-File Civic CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --primary: #0f3a69;
+        --primary-light: #1e528e;
+        --primary-dark: #092340;
+        --accent: #d97706;
+        --accent-light: #fef3c7;
+        --accent-dark: #92400e;
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --border: #e2e8f0;
+        --border-focus: #3b82f6;
+        --text: #0f172a;
+        --text-muted: #64748b;
+        --success: #16a34a;
+        --success-bg: #dcfce7;
+        --warning: #ea580c;
+        --warning-bg: #ffedd5;
+        --danger: #dc2626;
+        --danger-bg: #fee2e2;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 14px;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* App Header */
+      header.app-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .brand-icon {
+        font-size: 1.5rem;
+        color: #fbbf24;
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .badge-mode {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #fef08a;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .status-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #22c55e;
+      }
+
+      .status-dot.error {
+        background-color: #ef4444;
+      }
+
+      .btn-header {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.15s ease;
+      }
+
+      .btn-header:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Main Layout */
+      .app-layout {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* Sidebar Navigation */
+      aside.app-sidebar {
+        width: 270px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+
+      .nav-section-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        padding: 1.25rem 1.25rem 0.5rem;
+      }
+
+      .nav-list {
+        list-style: none;
+        padding: 0 0.75rem;
+      }
+
+      .nav-item {
+        margin-bottom: 3px;
+      }
+
+      .nav-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 9px 12px;
+        border: none;
+        background: transparent;
+        border-radius: var(--radius-sm);
+        color: var(--text);
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.15s ease;
+      }
+
+      .nav-btn .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-btn i {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+      }
+
+      .nav-btn:hover {
+        background: #f1f5f9;
+        color: var(--primary);
+      }
+
+      .nav-btn:hover i {
+        color: var(--primary);
+      }
+
+      .nav-btn.active {
+        background: #e0f2fe;
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .nav-btn.active i {
+        color: var(--primary);
+      }
+
+      .count-badge {
+        font-size: 0.75rem;
+        background: #e2e8f0;
+        color: var(--text-muted);
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .nav-btn.active .count-badge {
+        background: #bae6fd;
+        color: var(--primary);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding: 1rem 1.25rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* Content Area */
+      main.app-content {
+        flex: 1;
+        padding: 1.75rem 2rem;
+        overflow-y: auto;
+        max-width: 1300px;
+      }
+
+      /* Page Header */
+      .content-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content-title-area h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .content-title-area p {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+
+      .content-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: var(--radius-sm);
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.15s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-light);
+      }
+
+      .btn-success {
+        background: var(--success);
+        color: #fff;
+      }
+
+      .btn-success:hover {
+        background: #15803d;
+      }
+
+      .btn-outline {
+        background: var(--surface);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-outline:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+      }
+
+      .btn-danger-outline {
+        background: var(--surface);
+        border-color: #fca5a5;
+        color: var(--danger);
+      }
+
+      .btn-danger-outline:hover {
+        background: var(--danger-bg);
+      }
+
+      .btn-sm {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+      }
+
+      /* Alert Notifications */
+      .alert-toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        padding: 12px 18px;
+        background: #1e293b;
+        color: #fff;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.875rem;
+        z-index: 1000;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .alert-toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .alert-toast.success {
+        background: #14532d;
+        border-left: 4px solid #22c55e;
+      }
+
+      .alert-toast.error {
+        background: #7f1d1d;
+        border-left: 4px solid #ef4444;
+      }
+
+      /* Filter & Search Bar */
+      .toolbar-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 0.875rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .search-box {
+        position: relative;
+        flex: 1;
+        max-width: 420px;
+      }
+
+      .search-box i {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 8px 12px 8px 36px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.875rem;
+        outline: none;
+        transition: border 0.15s ease;
+      }
+
+      .search-input:focus {
+        border-color: var(--border-focus);
+      }
+
+      /* Table Styles */
+      .table-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+      }
+
+      .data-table th {
+        background: #f8fafc;
+        padding: 10px 16px;
+        font-weight: 600;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .data-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .data-table tr:hover {
+        background-color: #fbfcfe;
+      }
+
+      /* Badges */
+      .badge-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge-info {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .badge-success {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .badge-warning {
+        background: #ffedd5;
+        color: #c2410c;
+      }
+
+      /* Modal Editor */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 500;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+        padding: 1.5rem;
+      }
+
+      .modal-backdrop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        max-width: 720px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: scale(0.96);
+        transition: transform 0.2s ease;
+      }
+
+      .modal-backdrop.show .modal-card {
+        transform: scale(1);
+      }
+
+      .modal-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .modal-header h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .modal-close {
+        background: transparent;
+        border: none;
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        cursor: pointer;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+        overflow-y: auto;
+      }
+
+      .modal-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        background: #f8fafc;
+      }
+
+      /* Form Fields */
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .form-col-2 {
+        grid-column: span 2;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .form-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.875rem;
+        font-family: inherit;
+        outline: none;
+        transition: border 0.15s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--border-focus);
+      }
+
+      .form-textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .form-hint {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* Cards Grid */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .item-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 1.25rem;
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .item-card:hover {
+        border-color: #cbd5e1;
+        box-shadow: var(--shadow);
+      }
+
+      .item-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .item-card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .item-card-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .item-card-body {
+        font-size: 0.85rem;
+        color: var(--text);
+        flex: 1;
+        margin-bottom: 1rem;
+      }
+
+      .item-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 0.75rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 860px) {
+        .app-layout {
+          flex-direction: column;
+        }
+        aside.app-sidebar {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-list {
+          display: flex;
+          overflow-x: auto;
+          padding: 0.5rem;
+        }
+        .nav-item {
+          white-space: nowrap;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-col-2 {
+          grid-column: span 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <i class="bi bi-shield-shaded brand-icon"></i>
+        <div>
+          <div class="brand-title">
+            Santa Maria Admin Studio
+            <span class="badge-mode">Flat-File CMS</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-pill">
+          <div class="status-dot" id="server-dot"></div>
+          <span id="server-status">Connecting...</span>
+        </div>
+        <a href="http://localhost:8000" target="_blank" class="btn-header">
+          <i class="bi bi-box-arrow-up-right"></i>
+          <span>View Live Site</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="app-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="app-sidebar">
+        <div class="nav-section-title">Civic Datasets</div>
+        <ul class="nav-list" id="nav-collections">
+          <li class="nav-item">
+            <button class="nav-btn active" data-coll="news">
+              <span class="nav-left">
+                <i class="bi bi-newspaper"></i>
+                <span>News & Updates</span>
+              </span>
+              <span class="count-badge" id="count-news">-</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="services">
+              <span class="nav-left">
+                <i class="bi bi-card-checklist"></i>
+                <span>Services (Charter)</span>
+              </span>
+              <span class="count-badge" id="count-services">-</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="officials">
+              <span class="nav-left">
+                <i class="bi bi-people-fill"></i>
+                <span>Officials & Leaders</span>
+              </span>
+              <span class="count-badge" id="count-officials">-</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="demographics">
+              <span class="nav-left">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>Demographics & Profile</span>
+              </span>
+              <span class="count-badge" id="count-demographics">-</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="ordinances">
+              <span class="nav-left">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>SB Ordinances</span>
+              </span>
+              <span class="count-badge" id="count-ordinances">-</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="resolutions">
+              <span class="nav-left">
+                <i class="bi bi-journal-bookmark"></i>
+                <span>SB Resolutions</span>
+              </span>
+              <span class="count-badge" id="count-resolutions">-</span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="nav-section-title">Maintenance</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-btn" data-coll="backups">
+              <span class="nav-left">
+                <i class="bi bi-clock-history"></i>
+                <span>Safety Backups</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div>Municipality: <strong>Santa Maria, Bulacan</strong></div>
+          <div style="margin-top: 4px">Storage: <code>data/*.json</code></div>
+        </div>
+      </aside>
+
+      <!-- Main Content View -->
+      <main class="app-content">
+        <div class="content-header">
+          <div class="content-title-area">
+            <h2 id="view-title">News & Announcements</h2>
+            <p id="view-description">
+              Public updates, advisories, announcements, and press releases
+            </p>
+          </div>
+          <div class="content-actions">
+            <button class="btn btn-outline" id="btn-reload">
+              <i class="bi bi-arrow-clockwise"></i>
+              <span>Reload</span>
+            </button>
+            <button class="btn btn-primary" id="btn-add-item">
+              <i class="bi bi-plus-lg"></i>
+              <span id="btn-add-label">New Entry</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Toolbar: Search & Filter -->
+        <div class="toolbar-card" id="toolbar-area">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              class="search-input"
+              id="search-input"
+              placeholder="Search items by keyword..."
+            />
+          </div>
+          <div id="filter-controls"></div>
+        </div>
+
+        <!-- Dynamic Container for Collections -->
+        <div id="content-container">
+          <div style="text-align: center; padding: 40px; color: var(--text-muted)">
+            <p>Loading data from localhost...</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal Form for Editing/Adding Items -->
+    <div class="modal-backdrop" id="edit-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modal-title">Edit Item</h3>
+          <button class="modal-close" id="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="item-form"></form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" id="modal-cancel-btn">Cancel</button>
+          <button class="btn btn-primary" id="modal-submit-btn">Apply & Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="alert-toast" id="toast">
+      <i class="bi bi-info-circle" id="toast-icon"></i>
+      <span id="toast-message">Notification message</span>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        const state = {
+          currentColl: 'news',
+          collectionsMeta: {},
+          rawData: {},
+          filteredItems: [],
+          editingIndex: -1
+        };
+
+        const $ = (id) => document.getElementById(id);
+
+        function showToast(message, type = 'success') {
+          const toast = $('toast');
+          const msg = $('toast-message');
+          const icon = $('toast-icon');
+
+          toast.className = `alert-toast show ${type}`;
+          msg.textContent = message;
+          icon.className =
+            type === 'success'
+              ? 'bi bi-check-circle-fill'
+              : type === 'error'
+              ? 'bi bi-exclamation-triangle-fill'
+              : 'bi bi-info-circle-fill';
+
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3500);
+        }
+
+        async function fetchCollections() {
+          try {
+            const r = await fetch('/api/collections');
+            if (!r.ok) throw new Error('API offline');
+            const data = await r.json();
+            $('server-dot').className = 'status-dot';
+            $('server-status').textContent = 'Connected (127.0.0.1)';
+
+            data.collections.forEach((c) => {
+              state.collectionsMeta[c.id] = c;
+              const badge = $(`count-${c.id}`);
+              if (badge) badge.textContent = c.count;
+            });
+            return true;
+          } catch (err) {
+            $('server-dot').className = 'status-dot error';
+            $('server-status').textContent = 'Server Offline';
+            showToast('Cannot connect to admin server at localhost:8888', 'error');
+            return false;
+          }
+        }
+
+        async function loadCurrentCollection() {
+          const coll = state.currentColl;
+          const container = $('content-container');
+
+          if (coll === 'backups') {
+            renderBackupsView();
+            return;
+          }
+
+          const meta = state.collectionsMeta[coll];
+          if (meta) {
+            $('view-title').textContent = meta.label;
+            $('view-description').textContent = meta.description;
+            $('btn-add-item').style.display = meta.rootKey ? 'inline-flex' : 'none';
+          }
+
+          container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: var(--text-muted)">
+              <p>Loading ${meta ? meta.label : coll}...</p>
+            </div>`;
+
+          try {
+            const r = await fetch(`/api/data/${coll}`);
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            const json = await r.json();
+            state.rawData[coll] = json.data;
+            renderCollection(coll);
+          } catch (err) {
+            container.innerHTML = `
+              <div style="padding: 2rem; background: #fee2e2; border-radius: 8px; color: #991b1b">
+                <strong>Error:</strong> Failed to load data: ${err.message}
+              </div>`;
+          }
+        }
+
+        async function saveCurrentCollection() {
+          const coll = state.currentColl;
+          const meta = state.collectionsMeta[coll];
+          const payload = state.rawData[coll];
+
+          try {
+            const r = await fetch(`/api/data/${coll}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const res = await r.json();
+            if (!res.ok) throw new Error(res.error || 'Failed to save');
+
+            showToast(res.message || 'Saved successfully!', 'success');
+            await fetchCollections();
+            renderCollection(coll);
+          } catch (err) {
+            showToast(`Save error: ${err.message}`, 'error');
+          }
+        }
+
+        function renderCollection(coll) {
+          const data = state.rawData[coll];
+          const searchVal = ($('search-input').value || '').toLowerCase().trim();
+
+          if (coll === 'news') {
+            renderNewsList(data.news || [], searchVal);
+          } else if (coll === 'services') {
+            renderServicesList(data.services || [], searchVal);
+          } else if (coll === 'officials') {
+            renderOfficialsView(data);
+          } else if (coll === 'demographics') {
+            renderDemographicsView(data, searchVal);
+          } else if (coll === 'ordinances') {
+            renderOrdinancesList(data.ordinances || [], searchVal);
+          } else if (coll === 'resolutions') {
+            renderResolutionsList(data.resolutions || [], searchVal);
+          }
+        }
+
+        function renderNewsList(items, searchVal) {
+          const filtered = items.filter((item) => {
+            if (!searchVal) return true;
+            return (
+              (item.title && item.title.toLowerCase().includes(searchVal)) ||
+              (item.category && item.category.toLowerCase().includes(searchVal)) ||
+              (item.summary && item.summary.toLowerCase().includes(searchVal))
+            );
+          });
+
+          if (filtered.length === 0) {
+            $('content-container').innerHTML = `
+              <div style="text-align: center; padding: 40px; color: var(--text-muted)">
+                No news updates found matching your search.
+              </div>`;
+            return;
+          }
+
+          let html = '<div class="cards-grid">';
+          filtered.forEach((item) => {
+            const realIndex = items.indexOf(item);
+            const badgeClass =
+              item.badge === 'warning'
+                ? 'badge-warning'
+                : item.badge === 'success'
+                ? 'badge-success'
+                : 'badge-info';
+
+            html += `
+              <div class="item-card">
+                <div>
+                  <div class="item-card-header">
+                    <span class="badge-tag ${badgeClass}">${item.category || 'General'}</span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted)">${item.date || ''}</span>
+                  </div>
+                  <h4 class="item-card-title">${escapeHtml(item.title || 'Untitled')}</h4>
+                  <p class="item-card-body" style="margin-top: 8px">${escapeHtml(item.summary || '')}</p>
+                </div>
+                <div class="item-card-footer">
+                  <button class="btn btn-outline btn-sm" onclick="window.editItem(${realIndex})">
+                    <i class="bi bi-pencil"></i> Edit
+                  </button>
+                  <button class="btn btn-danger-outline btn-sm" onclick="window.deleteItem(${realIndex})">
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </div>
+              </div>`;
+          });
+          html += '</div>';
+          $('content-container').innerHTML = html;
+        }
+
+        function renderServicesList(items, searchVal) {
+          const filtered = items.filter((item) => {
+            if (!searchVal) return true;
+            return (
+              (item.title && item.title.toLowerCase().includes(searchVal)) ||
+              (item.office && item.office.toLowerCase().includes(searchVal)) ||
+              (item.category && item.category.toLowerCase().includes(searchVal)) ||
+              (item.description && item.description.toLowerCase().includes(searchVal))
+            );
+          });
+
+          if (filtered.length === 0) {
+            $('content-container').innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted)">No services found matching search.</div>`;
+            return;
+          }
+
+          let html = `
+            <div class="table-card">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Service Name</th>
+                    <th>Department / Office</th>
+                    <th>Fee</th>
+                    <th>Processing Time</th>
+                    <th>Category</th>
+                    <th style="text-align: right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+
+          filtered.forEach((item) => {
+            const realIndex = items.indexOf(item);
+            html += `
+              <tr>
+                <td>
+                  <strong>${escapeHtml(item.title)}</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px">${escapeHtml(item.description || '')}</div>
+                </td>
+                <td>${escapeHtml(item.office || 'Municipal Hall')}</td>
+                <td><span class="badge-tag badge-info">${escapeHtml(item.fee || 'Free')}</span></td>
+                <td>${escapeHtml(item.processingTime || 'N/A')}</td>
+                <td><span class="badge-tag" style="background: #f1f5f9">${escapeHtml(item.category || 'General')}</span></td>
+                <td style="text-align: right; white-space: nowrap">
+                  <button class="btn btn-outline btn-sm" onclick="window.editItem(${realIndex})">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-danger-outline btn-sm" onclick="window.deleteItem(${realIndex})">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>`;
+          });
+
+          html += `</tbody></table></div>`;
+          $('content-container').innerHTML = html;
+        }
+
+        function renderOfficialsView(data) {
+          const mayor = data.mayor || {};
+          const viceMayor = data.vice_mayor || {};
+          const councilors = data.councilors || [];
+
+          let html = `
+            <div style="display: flex; flex-direction: column; gap: 1.5rem">
+              <!-- Executive Leadership -->
+              <div class="table-card" style="padding: 1.25rem">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--primary)">Executive Leadership</h3>
+                <div class="cards-grid">
+                  <div class="item-card">
+                    <div>
+                      <span class="badge-tag badge-info">Municipal Mayor</span>
+                      <h4 class="item-card-title" style="margin-top: 8px">${escapeHtml(mayor.name || 'Not set')}</h4>
+                      <p style="font-size: 0.8rem; color: var(--text-muted)">${escapeHtml(mayor.term || '2025–2028')} · ${escapeHtml(mayor.office || '')}</p>
+                      <p style="font-size: 0.8rem; margin-top: 4px"><i class="bi bi-envelope"></i> ${escapeHtml(mayor.email || '')}</p>
+                    </div>
+                    <div class="item-card-footer">
+                      <button class="btn btn-outline btn-sm" onclick="window.editExecutive('mayor')">Edit Mayor</button>
+                    </div>
+                  </div>
+                  <div class="item-card">
+                    <div>
+                      <span class="badge-tag badge-info">Municipal Vice Mayor</span>
+                      <h4 class="item-card-title" style="margin-top: 8px">${escapeHtml(viceMayor.name || 'Not set')}</h4>
+                      <p style="font-size: 0.8rem; color: var(--text-muted)">${escapeHtml(viceMayor.term || '2025–2028')} · ${escapeHtml(viceMayor.office || '')}</p>
+                      <p style="font-size: 0.8rem; margin-top: 4px"><i class="bi bi-envelope"></i> ${escapeHtml(viceMayor.email || '')}</p>
+                    </div>
+                    <div class="item-card-footer">
+                      <button class="btn btn-outline btn-sm" onclick="window.editExecutive('vice_mayor')">Edit Vice Mayor</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sangguniang Bayan Councilors -->
+              <div class="table-card">
+                <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center">
+                  <h3 style="font-size: 1.1rem; color: var(--primary)">Sangguniang Bayan Members (${councilors.length})</h3>
+                  <button class="btn btn-primary btn-sm" onclick="window.addCouncilor()">+ Add SB Member</button>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Title</th>
+                      <th>Committee Assignment</th>
+                      <th style="text-align: right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+
+          councilors.forEach((c, idx) => {
+            html += `
+              <tr>
+                <td><strong>${escapeHtml(c.name || '')}</strong></td>
+                <td>${escapeHtml(c.title || 'SB Member')}</td>
+                <td>${escapeHtml(c.committee || 'Committee Member')}</td>
+                <td style="text-align: right">
+                  <button class="btn btn-outline btn-sm" onclick="window.editCouncilor(${idx})"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-danger-outline btn-sm" onclick="window.deleteCouncilor(${idx})"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>`;
+          });
+
+          html += `</tbody></table></div></div>`;
+          $('content-container').innerHTML = html;
+        }
+
+        function renderDemographicsView(data, searchVal) {
+          const pop = data.population || {};
+          const barangays = data.barangays || [];
+          const filtered = barangays.filter((b) => !searchVal || b.name.toLowerCase().includes(searchVal));
+
+          let html = `
+            <div style="display: flex; flex-direction: column; gap: 1.25rem">
+              <div class="cards-grid">
+                <div class="item-card">
+                  <span class="badge-tag badge-info">Municipality</span>
+                  <h3 style="margin-top: 4px">${escapeHtml(data.municipality || 'Santa Maria')}, ${escapeHtml(data.province || 'Bulacan')}</h3>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px">${escapeHtml(data.region || '')} · Postal: ${escapeHtml(data.postal_code || '3022')}</p>
+                </div>
+                <div class="item-card">
+                  <span class="badge-tag badge-success">Population (PSA Census)</span>
+                  <h3 style="margin-top: 4px">${(pop.total || 0).toLocaleString()} residents</h3>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px">Census Year: ${escapeHtml(String(pop.year || 2020))} · Income Class: ${escapeHtml(data.income_class || '1st Class')}</p>
+                </div>
+                <div class="item-card">
+                  <span class="badge-tag badge-warning">Land Area & Barangays</span>
+                  <h3 style="margin-top: 4px">${data.land_area_km2 || 90.92} km²</h3>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px">${barangays.length} Official Barangays</p>
+                </div>
+              </div>
+
+              <div class="table-card">
+                <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border)">
+                  <h3 style="font-size: 1.05rem">Official Barangays Directory (${filtered.length})</h3>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px">#</th>
+                      <th>Barangay Name</th>
+                      <th>Classification</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+
+          filtered.forEach((b, idx) => {
+            html += `
+              <tr>
+                <td>${idx + 1}</td>
+                <td><strong>${escapeHtml(b.name)}</strong></td>
+                <td><span class="badge-tag ${b.classification === 'Urban' ? 'badge-info' : 'badge-warning'}">${b.classification}</span></td>
+              </tr>`;
+          });
+
+          html += `</tbody></table></div></div>`;
+          $('content-container').innerHTML = html;
+        }
+
+        function renderOrdinancesList(items, searchVal) {
+          const filtered = items.filter((item) => {
+            if (!searchVal) return true;
+            return (
+              (item.ordinanceNo && item.ordinanceNo.toLowerCase().includes(searchVal)) ||
+              (item.title && item.title.toLowerCase().includes(searchVal))
+            );
+          });
+
+          let html = `
+            <div class="table-card">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px">Ordinance No.</th>
+                    <th>Title & Description</th>
+                    <th style="width: 120px">Session Date</th>
+                    <th style="text-align: right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+
+          filtered.forEach((item) => {
+            const realIndex = items.indexOf(item);
+            html += `
+              <tr>
+                <td><strong>${escapeHtml(item.ordinanceNo || '')}</strong></td>
+                <td>${escapeHtml(item.title || '')}</td>
+                <td>${escapeHtml(item.sessionDate || '')}</td>
+                <td style="text-align: right; white-space: nowrap">
+                  <button class="btn btn-outline btn-sm" onclick="window.editItem(${realIndex})"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-danger-outline btn-sm" onclick="window.deleteItem(${realIndex})"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>`;
+          });
+
+          html += `</tbody></table></div>`;
+          $('content-container').innerHTML = html;
+        }
+
+        function renderResolutionsList(items, searchVal) {
+          const filtered = items.filter((item) => {
+            if (!searchVal) return true;
+            return (
+              (item.resolutionNo && item.resolutionNo.toLowerCase().includes(searchVal)) ||
+              (item.title && item.title.toLowerCase().includes(searchVal))
+            );
+          });
+
+          let html = `
+            <div class="table-card">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px">Resolution No.</th>
+                    <th>Subject & Resolution Title</th>
+                    <th style="width: 120px">Session Date</th>
+                    <th style="text-align: right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+
+          filtered.forEach((item) => {
+            const realIndex = items.indexOf(item);
+            html += `
+              <tr>
+                <td><strong>${escapeHtml(item.resolutionNo || '')}</strong></td>
+                <td>${escapeHtml(item.title || '')}</td>
+                <td>${escapeHtml(item.sessionDate || '')}</td>
+                <td style="text-align: right; white-space: nowrap">
+                  <button class="btn btn-outline btn-sm" onclick="window.editItem(${realIndex})"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-danger-outline btn-sm" onclick="window.deleteItem(${realIndex})"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>`;
+          });
+
+          html += `</tbody></table></div>`;
+          $('content-container').innerHTML = html;
+        }
+
+        async function renderBackupsView() {
+          $('view-title').textContent = 'Safety Backups & History';
+          $('view-description').textContent =
+            'Every time a dataset is saved, an automated snapshot is stored in data/backups/';
+          $('btn-add-item').style.display = 'none';
+
+          const container = $('content-container');
+          container.innerHTML = `<div style="text-align: center; padding: 40px">Loading backups...</div>`;
+
+          try {
+            let allBackups = [];
+            for (const key of Object.keys(state.collectionsMeta)) {
+              const res = await fetch(`/api/backups/${key}`);
+              if (res.ok) {
+                const j = await res.json();
+                if (j.backups) allBackups = allBackups.concat(j.backups);
+              }
+            }
+
+            if (allBackups.length === 0) {
+              container.innerHTML = `
+                <div class="table-card" style="padding: 2.5rem; text-align: center; color: var(--text-muted)">
+                  <i class="bi bi-shield-check" style="font-size: 2.5rem; color: var(--success); display: block; margin-bottom: 10px"></i>
+                  <h3>No backups created yet</h3>
+                  <p style="margin-top: 6px">Safety backups are created automatically before any change is saved to disk.</p>
+                </div>`;
+              return;
+            }
+
+            allBackups.sort((a, b) => b.filename.localeCompare(a.filename));
+
+            let html = `
+              <div class="table-card">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Backup File</th>
+                      <th>File Size</th>
+                      <th>Date Created</th>
+                      <th style="text-align: right">Restore Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+
+            allBackups.forEach((b) => {
+              const coll = b.filename.split('_')[0];
+              html += `
+                <tr>
+                  <td><i class="bi bi-file-earmark-code" style="color: var(--primary); margin-right: 6px"></i> <strong>${escapeHtml(b.filename)}</strong></td>
+                  <td>${(b.sizeBytes / 1024).toFixed(1)} KB</td>
+                  <td>${new Date(b.date).toLocaleString()}</td>
+                  <td style="text-align: right">
+                    <button class="btn btn-outline btn-sm" onclick="window.restoreBackup('${coll}', '${b.filename}')">
+                      <i class="bi bi-arrow-counterclockwise"></i> Restore
+                    </button>
+                  </td>
+                </tr>`;
+            });
+
+            html += `</tbody></table></div>`;
+            container.innerHTML = html;
+          } catch (err) {
+            container.innerHTML = `<div style="color: red; padding: 20px">Failed to load backups: ${err.message}</div>`;
+          }
+        }
+
+        function escapeHtml(str) {
+          if (!str) return '';
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+
+        function openEditModal(title, fields, initialValues, onSave) {
+          $('modal-title').textContent = title;
+          const form = $('item-form');
+          form.innerHTML = '';
+
+          let formHtml = '<div class="form-grid">';
+          fields.forEach((f) => {
+            const val = initialValues[f.name] !== undefined ? initialValues[f.name] : '';
+            const isFull = f.colSpan === 2 || f.type === 'textarea';
+            formHtml += `
+              <div class="form-group ${isFull ? 'form-col-2' : ''}">
+                <label class="form-label">${f.label}</label>`;
+
+            if (f.type === 'select') {
+              formHtml += `<select class="form-select" id="field-${f.name}">`;
+              (f.options || []).forEach((opt) => {
+                const optVal = typeof opt === 'string' ? opt : opt.value;
+                const optLbl = typeof opt === 'string' ? opt : opt.label;
+                formHtml += `<option value="${optVal}" ${optVal === val ? 'selected' : ''}>${optLbl}</option>`;
+              });
+              formHtml += `</select>`;
+            } else if (f.type === 'textarea') {
+              formHtml += `<textarea class="form-textarea" id="field-${f.name}">${escapeHtml(val)}</textarea>`;
+            } else {
+              formHtml += `<input type="${f.type || 'text'}" class="form-input" id="field-${f.name}" value="${escapeHtml(val)}" />`;
+            }
+
+            if (f.hint) formHtml += `<div class="form-hint">${f.hint}</div>`;
+            formHtml += `</div>`;
+          });
+          formHtml += '</div>';
+          form.innerHTML = formHtml;
+
+          $('modal-submit-btn').onclick = (e) => {
+            e.preventDefault();
+            const result = {};
+            fields.forEach((f) => {
+              const input = $(`field-${f.name}`);
+              if (input) result[f.name] = input.value.trim();
+            });
+            onSave(result);
+            closeModal();
+          };
+
+          $('edit-modal').classList.add('show');
+        }
+
+        function closeModal() {
+          $('edit-modal').classList.remove('show');
+        }
+
+        $('modal-close-btn').onclick = closeModal;
+        $('modal-cancel-btn').onclick = closeModal;
+
+        window.editItem = function (index) {
+          const coll = state.currentColl;
+          const list = state.rawData[coll][state.collectionsMeta[coll].rootKey];
+          const item = list[index];
+
+          if (coll === 'news') {
+            openEditModal(
+              'Edit News Announcement',
+              [
+                { name: 'title', label: 'Title', colSpan: 2 },
+                { name: 'date', label: 'Publish Date', type: 'date' },
+                {
+                  name: 'category',
+                  label: 'Category',
+                  type: 'select',
+                  options: ['Announcement', 'Advisory', 'Project', 'Notice', 'Event']
+                },
+                {
+                  name: 'badge',
+                  label: 'Badge Color',
+                  type: 'select',
+                  options: [
+                    { value: 'info', label: 'Info (Blue)' },
+                    { value: 'warning', label: 'Warning / Advisory (Amber)' },
+                    { value: 'success', label: 'Success / Project (Green)' }
+                  ]
+                },
+                { name: 'summary', label: 'Summary / Body', type: 'textarea', colSpan: 2 },
+                { name: 'url', label: 'Outbound URL (Optional)', colSpan: 2, hint: 'Link to full press release or official order' }
+              ],
+              item,
+              (updated) => {
+                list[index] = { ...item, ...updated };
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'services') {
+            openEditModal(
+              'Edit Municipal Service',
+              [
+                { name: 'title', label: 'Service Name', colSpan: 2 },
+                { name: 'office', label: 'Office / Department' },
+                { name: 'category', label: 'Category' },
+                { name: 'fee', label: 'Fee', hint: 'e.g. Free, ₱150' },
+                { name: 'processingTime', label: 'Processing Time', hint: 'e.g. 15-30 minutes' },
+                { name: 'description', label: 'Service Description', type: 'textarea', colSpan: 2 }
+              ],
+              item,
+              (updated) => {
+                list[index] = { ...item, ...updated };
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'ordinances') {
+            openEditModal(
+              'Edit SB Ordinance',
+              [
+                { name: 'ordinanceNo', label: 'Ordinance Number', hint: 'e.g. 2025-01-11' },
+                { name: 'sessionDate', label: 'Session Date', type: 'date' },
+                { name: 'title', label: 'Ordinance Title / Full Text', type: 'textarea', colSpan: 2 }
+              ],
+              item,
+              (updated) => {
+                list[index] = { ...item, ...updated };
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'resolutions') {
+            openEditModal(
+              'Edit SB Resolution',
+              [
+                { name: 'resolutionNo', label: 'Resolution Number', hint: 'e.g. 2025-01-11' },
+                { name: 'sessionDate', label: 'Session Date', type: 'date' },
+                { name: 'title', label: 'Resolution Title', type: 'textarea', colSpan: 2 }
+              ],
+              item,
+              (updated) => {
+                list[index] = { ...item, ...updated };
+                saveCurrentCollection();
+              }
+            );
+          }
+        };
+
+        window.deleteItem = function (index) {
+          const coll = state.currentColl;
+          const rootKey = state.collectionsMeta[coll].rootKey;
+          const list = state.rawData[coll][rootKey];
+          const item = list[index];
+
+          if (confirm(`Are you sure you want to delete "${item.title || item.ordinanceNo || 'this item'}"?`)) {
+            list.splice(index, 1);
+            saveCurrentCollection();
+          }
+        };
+
+        $('btn-add-item').onclick = () => {
+          const coll = state.currentColl;
+          const rootKey = state.collectionsMeta[coll].rootKey;
+          if (!rootKey) return;
+          const list = state.rawData[coll][rootKey];
+
+          if (coll === 'news') {
+            const today = new Date().toISOString().slice(0, 10);
+            openEditModal(
+              'New Announcement',
+              [
+                { name: 'title', label: 'Title', colSpan: 2 },
+                { name: 'date', label: 'Publish Date', type: 'date' },
+                {
+                  name: 'category',
+                  label: 'Category',
+                  type: 'select',
+                  options: ['Announcement', 'Advisory', 'Project', 'Notice', 'Event']
+                },
+                {
+                  name: 'badge',
+                  label: 'Badge Color',
+                  type: 'select',
+                  options: [
+                    { value: 'info', label: 'Info (Blue)' },
+                    { value: 'warning', label: 'Warning / Advisory (Amber)' },
+                    { value: 'success', label: 'Success / Project (Green)' }
+                  ]
+                },
+                { name: 'summary', label: 'Summary / Body', type: 'textarea', colSpan: 2 },
+                { name: 'url', label: 'Outbound URL (Optional)', colSpan: 2 }
+              ],
+              { date: today, badge: 'info', category: 'Announcement' },
+              (newItem) => {
+                newItem.id = (newItem.title || 'news')
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/(^-|-$)/g, '');
+                list.unshift(newItem);
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'services') {
+            openEditModal(
+              'New Municipal Service',
+              [
+                { name: 'title', label: 'Service Name', colSpan: 2 },
+                { name: 'office', label: 'Office / Department' },
+                { name: 'category', label: 'Category' },
+                { name: 'fee', label: 'Fee', hint: 'e.g. Free, ₱150' },
+                { name: 'processingTime', label: 'Processing Time', hint: 'e.g. 15-30 minutes' },
+                { name: 'description', label: 'Service Description', type: 'textarea', colSpan: 2 }
+              ],
+              { fee: 'Free', processingTime: '15-30 minutes', category: 'General' },
+              (newItem) => {
+                newItem.id = (newItem.title || 'service')
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/(^-|-$)/g, '');
+                list.push(newItem);
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'ordinances') {
+            const today = new Date().toISOString().slice(0, 10);
+            openEditModal(
+              'New SB Ordinance',
+              [
+                { name: 'ordinanceNo', label: 'Ordinance Number', hint: 'e.g. 2026-01-01' },
+                { name: 'sessionDate', label: 'Session Date', type: 'date' },
+                { name: 'title', label: 'Ordinance Title / Full Text', type: 'textarea', colSpan: 2 }
+              ],
+              { sessionDate: today },
+              (newItem) => {
+                list.unshift(newItem);
+                saveCurrentCollection();
+              }
+            );
+          } else if (coll === 'resolutions') {
+            const today = new Date().toISOString().slice(0, 10);
+            openEditModal(
+              'New SB Resolution',
+              [
+                { name: 'resolutionNo', label: 'Resolution Number', hint: 'e.g. 2026-01-01' },
+                { name: 'sessionDate', label: 'Session Date', type: 'date' },
+                { name: 'title', label: 'Resolution Title', type: 'textarea', colSpan: 2 }
+              ],
+              { sessionDate: today },
+              (newItem) => {
+                list.unshift(newItem);
+                saveCurrentCollection();
+              }
+            );
+          }
+        };
+
+        window.editExecutive = function (role) {
+          const raw = state.rawData.officials;
+          const current = raw[role] || {};
+          const title = role === 'mayor' ? 'Edit Municipal Mayor' : 'Edit Municipal Vice Mayor';
+
+          openEditModal(
+            title,
+            [
+              { name: 'name', label: 'Full Name with Honorific', colSpan: 2 },
+              { name: 'title', label: 'Official Title' },
+              { name: 'term', label: 'Term Period', hint: 'e.g. 2025–2028' },
+              { name: 'office', label: 'Office Name', colSpan: 2 },
+              { name: 'email', label: 'Email Address' },
+              { name: 'image', label: 'Photo Path', hint: 'e.g. /assets/images/officials/mayor.jpg' }
+            ],
+            current,
+            (updated) => {
+              raw[role] = { ...current, ...updated };
+              saveCurrentCollection();
+            }
+          );
+        };
+
+        window.addCouncilor = function () {
+          const raw = state.rawData.officials;
+          if (!raw.councilors) raw.councilors = [];
+          openEditModal(
+            'Add SB Member',
+            [
+              { name: 'name', label: 'Official Name (Hon.)', colSpan: 2 },
+              { name: 'title', label: 'Title', hint: 'SB Member' },
+              { name: 'committee', label: 'Committee Assignment', colSpan: 2 }
+            ],
+            { title: 'SB Member' },
+            (newItem) => {
+              raw.councilors.push(newItem);
+              saveCurrentCollection();
+            }
+          );
+        };
+
+        window.editCouncilor = function (idx) {
+          const raw = state.rawData.officials;
+          const item = raw.councilors[idx];
+          openEditModal(
+            'Edit SB Member',
+            [
+              { name: 'name', label: 'Official Name (Hon.)', colSpan: 2 },
+              { name: 'title', label: 'Title' },
+              { name: 'committee', label: 'Committee Assignment', colSpan: 2 }
+            ],
+            item,
+            (updated) => {
+              raw.councilors[idx] = { ...item, ...updated };
+              saveCurrentCollection();
+            }
+          );
+        };
+
+        window.deleteCouncilor = function (idx) {
+          const raw = state.rawData.officials;
+          if (confirm(`Remove "${raw.councilors[idx].name}" from Councilors list?`)) {
+            raw.councilors.splice(idx, 1);
+            saveCurrentCollection();
+          }
+        };
+
+        window.restoreBackup = async function (coll, filename) {
+          if (confirm(`Are you sure you want to restore ${coll} from snapshot "${filename}"? Current data will be replaced.`)) {
+            try {
+              const r = await fetch(`/api/restore/${coll}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ backupFileName: filename })
+              });
+              const res = await r.json();
+              if (!res.ok) throw new Error(res.error || 'Restore failed');
+              showToast(res.message, 'success');
+              await fetchCollections();
+              renderBackupsView();
+            } catch (err) {
+              showToast(`Restore error: ${err.message}`, 'error');
+            }
+          }
+        };
+
+        $('nav-collections').addEventListener('click', (e) => {
+          const btn = e.target.closest('.nav-btn');
+          if (!btn) return;
+          const coll = btn.getAttribute('data-coll');
+          if (!coll) return;
+
+          document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          state.currentColl = coll;
+          $('search-input').value = '';
+          loadCurrentCollection();
+        });
+
+        $('search-input').addEventListener('input', () => {
+          renderCollection(state.currentColl);
+        });
+
+        $('btn-reload').addEventListener('click', () => {
+          loadCurrentCollection();
+          showToast('Data refreshed from disk', 'info');
+        });
+
+        async function init() {
+          const ok = await fetchCollections();
+          if (ok) {
+            loadCurrentCollection();
+          }
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

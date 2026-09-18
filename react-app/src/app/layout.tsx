@@ -12,20 +12,31 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: { default: 'BetterSolano.org | Official Portal', template: '%s | BetterSolano.org' },
-  description: 'BetterSolano.org - Your digital gateway to LGU Solano services.',
-  keywords: ['BetterSolano', 'Solano Nueva Vizcaya', 'LGU Solano', 'municipal services'],
-  authors: [{ name: 'Ramon Logan Jr.' }],
+  metadataBase: new URL('https://bettersantamaria.org'),
+  title: { default: 'BetterSantaMaria.org | Official Civic Portal', template: '%s | BetterSantaMaria.org' },
+  description:
+    'BetterSantaMaria.org - Transparent digital gateway to municipal services, public funds, and local government data for Santa Maria, Bulacan.',
+  keywords: [
+    'BetterSantaMaria',
+    'Santa Maria Bulacan',
+    'LGU Santa Maria',
+    'municipal services',
+    'civic-tech',
+    'transparency',
+    'Bulacan'
+  ],
+  authors: [{ name: 'Josiah Jezrael Guevarra' }],
   openGraph: {
     type: 'website',
     locale: 'en_PH',
-    url: 'https://bettersolano.org/',
-    siteName: 'BetterSolano.org',
-    title: 'BetterSolano.org | Official Portal',
-    description: 'Empowering the people of Solano with transparent access to services.',
+    url: 'https://bettersantamaria.org/',
+    siteName: 'BetterSantaMaria.org',
+    title: 'BetterSantaMaria.org | Official Civic Portal',
+    description:
+      'Empowering the people of Santa Maria, Bulacan with transparent access to services, programs, and public funds.',
     images: [
       {
-        url: 'https://bettersolano.org/assets/images/banners/opengraph.png',
+        url: '/assets/images/banners/opengraph.png',
         width: 1200,
         height: 630,
       },
@@ -37,7 +48,13 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'BetterSolano',
+    title: 'BetterStaMaria',
+  },
+  other: {
+    'geo.region': 'PH-BUL',
+    'geo.placename': 'Santa Maria, Bulacan',
+    'geo.position': '14.8197;120.9610',
+    'ICBM': '14.8197, 120.9610',
   },
 };
 
