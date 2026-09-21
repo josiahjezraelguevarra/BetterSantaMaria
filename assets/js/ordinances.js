@@ -1,4 +1,4 @@
-/* Better Solano - Ordinance Table JavaScript */
+/* Better Santa Maria - Ordinance Table JavaScript */
 
 /**
  * Fetches ordinance data from the JSON file

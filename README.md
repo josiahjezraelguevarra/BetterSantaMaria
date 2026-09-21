@@ -20,7 +20,7 @@ BetterSantaMaria.org is a modernized, open-source civic portal built with **Next
 
 ## Open Source for LGUs
 
-This repository is dual-licensed under the **MIT License** and **CC BY 4.0**, forked from the pioneering civic-tech work of [BetterSolano.org](https://bettersolano.org) by Ramon Logan Jr. We encourage adoption by other municipalities in support of:
+This repository is dual-licensed under the **MIT License** and **CC BY 4.0**, forked from the pioneering civic-tech work of [BetterSantaMaria.org](https://bettersantamaria.org) by Ramon Logan Jr. We encourage adoption by other municipalities in support of:
 
 - **Transparency** - Making government budget, ordinances, and services accessible to citizens
 - **Accessibility** - Ensuring services are available to all, including persons with disabilities (WCAG 2.1)
@@ -68,14 +68,14 @@ BetterSantaMaria.org empowers the citizens of Santa Maria, Bulacan with direct, 
 | **Legislative Documents**        | Searchable database of ordinances and resolutions from Sangguniang Bayan                                                                                                                                          |
 | **Municipal Statistics**         | Demographics, economic data, and competitive index rankings                                                                                                                                                       |
 | **Appointment Services**         | Online appointment scheduling integration with the Mayor's Office (OASYS), featuring branded Lottie animation                                                                                                     |
-| **Solano Quiz**                  | Interactive quiz about Solano history and culture, linked from homepage CTA and footer across all pages                                                                                                           |
+| **Santa Maria Quiz**                  | Interactive quiz about Santa Maria history and culture, linked from homepage CTA and footer across all pages                                                                                                           |
 | **Real-time Information**        | Live weather updates, currency exchange rates, and Philippine time                                                                                                                                                |
 | **Emergency Hotline Marquee**    | Clickable scrolling marquee for emergency contacts on tablet and mobile viewports, with pause-on-hover/focus accessibility                                                                                        |
 | **Progressive Web App**          | Installable PWA with "Install App" prompt, seamless auto-updates via skipWaiting (no manual refresh), versioned service worker caching (static + runtime), offline fallback page with emergency hotlines, push notification foundation |
 | **Auto Version Management**      | Dynamic version display from `version.json`, auto-bumped on every git commit via pre-commit hook, synced across all 51+ HTML files, `package.json`, and React app                                                 |
 | **Multi-language Support**       | Full i18n coverage in English, Filipino, and Ilocano (5,546 keys per language with perfect parity)                                                                                                                |
 | **Clean URLs**                   | SEO-friendly URLs without `.html` extensions, powered by Apache mod_rewrite                                                                                                                                       |
-| **Brief History of Solano**      | Interactive timeline (1760–1957) with fully translated cards in all three languages                                                                                                                               |
+| **Brief History of Santa Maria**      | Interactive timeline (1760–1957) with fully translated cards in all three languages                                                                                                                               |
 | **Mobile Navigation**            | Responsive menu with GPU-accelerated open/close transitions, body scroll lock, animation guard against rapid toggles, debounced resize handling, touch-safe hover scoping, click-outside-to-close, and focus trap |
 | **Accessibility**                | WCAG 2.1 compliant with skip links, ARIA labels, keyboard navigation, and semantic HTML                                                                                                                           |
 | **SEO Optimized**                | Meta tags, Open Graph, Twitter Cards, structured data, and XML sitemap                                                                                                                                            |
@@ -85,10 +85,10 @@ BetterSantaMaria.org empowers the citizens of Santa Maria, Bulacan with direct, 
 
 ```bash
 # Clone the repository
-git clone https://github.com/BetterSolano/bettersolano.git
+git clone https://github.com/josiahjezraelguevarra/BetterSantaMaria.git
 
 # Navigate to project directory
-cd bettersolano
+cd bettersantamaria
 
 # Install dependencies
 npm install
@@ -116,8 +116,8 @@ py serve.py --port 8000 --directory .
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/BetterSolano/bettersolano.git
-cd bettersolano
+git clone https://github.com/josiahjezraelguevarra/BetterSantaMaria.git
+cd bettersantamaria
 ```
 
 2. **Install dependencies**
@@ -205,7 +205,7 @@ All CSS, images, animations, and translations are kept in sync across all three 
 ## Project Structure
 
 ```
-bettersolano/
+bettersantamaria/
 ├── assets/
 │   ├── css/              # Stylesheets (9 files)
 │   ├── js/               # JavaScript modules (18 files)
@@ -279,7 +279,7 @@ bettersolano/
 - Raised tablet breakpoint from 991px to 1024px to properly capture iPad Pro portrait (1024px) and iPad Air landscape
 - Converted emergency hotline bar into a clickable scrolling marquee on all tablet and mobile viewports (≤1024px) with pause-on-hover/focus for accessibility
 - Centered hamburger menu icon between logo and language toggle on tablet viewports using flexbox ordering (logo → hamburger → lang toggle)
-- Tablet footer: left-aligned BetterSolano logo, tagline, and social icons to match the visual hierarchy of the brand column
+- Tablet footer: left-aligned BetterSantaMaria logo, tagline, and social icons to match the visual hierarchy of the brand column
 
 #### Progressive Web App (PWA)
 
@@ -323,9 +323,9 @@ bettersolano/
 
 ### Content & Features
 
-- Added Solano Quiz CTA section on homepage with branded Lottie animation (brand blue `#0032A0`)
-- Added Solano Quiz link to footer Quick Links across all 51 HTML pages and React Footer
-- Added Brief History of Solano interactive timeline section on homepage (1760–1957)
+- Added Santa Maria Quiz CTA section on homepage with branded Lottie animation (brand blue `#0032A0`)
+- Added Santa Maria Quiz link to footer Quick Links across all 51 HTML pages and React Footer
+- Added Brief History of Santa Maria interactive timeline section on homepage (1760–1957)
 - Added quiz entry to HTML sitemap page
 - Added Abakada education tools CTA on services/education page with local SVG logo
 
@@ -335,14 +335,14 @@ bettersolano/
 - Fixed Brief History timeline cards — full paragraph translations now applied via `data-i18n` on `<p>` elements (previously only proper nouns inside `<strong>` tags were translated, leaving surrounding English text intact)
 - Corrected Filipino translations: proper religious title "Padre" (not "Ama"), fully translated historical paragraphs (no half-English)
 - Corrected Ilocano translations: proper Ilocano vocabulary ("Ababa a Pakasaritaan" not Filipino "Maikling Kasaysayan", "Dimteng" not "Dumating", "Ili" not "Lungsod"), fully translated paragraphs
-- Added 54 translation keys for Solano Quiz footer link across all page contexts
+- Added 54 translation keys for Santa Maria Quiz footer link across all page contexts
 
 ### Footer & Copyright
 
 - Standardized copyright across all 51 HTML files and React Footer: three styled spans (`footer-copyright-text`, `footer-copyright-license`, `footer-copyright-disclaimer`)
-- Updated copyright year to 2026, name to "BetterSolano.org"
+- Updated copyright year to 2026, name to "BetterSantaMaria.org"
 - Footer copyright uses `flex-wrap: wrap; gap: 6px` layout with version badge right-aligned via `margin-left: auto`
-- Removed trailing period after "BetterSolano.org" from all pages and all 3 translation languages
+- Removed trailing period after "BetterSantaMaria.org" from all pages and all 3 translation languages
 
 ### Clean URLs
 
@@ -363,7 +363,7 @@ bettersolano/
 
 ## Contributing
 
-We welcome contributions from everyone! Whether you're a developer, designer, data researcher, content writer, translator, or a concerned citizen of Solano, your participation helps shape this project for all.
+We welcome contributions from everyone! Whether you're a developer, designer, data researcher, content writer, translator, or a concerned citizen of Santa Maria, your participation helps shape this project for all.
 
 ### How to Contribute
 
@@ -419,8 +419,8 @@ All public information is sourced from official government portals:
 
 | Source                             | URL                                                                       | Data Type                 |
 | ---------------------------------- | ------------------------------------------------------------------------- | ------------------------- |
-| LGU Solano Official Website        | [solano.gov.ph](https://solano.gov.ph/)                                   | Services, Officials       |
-| Sangguniang Bayan ng Solano        | [sangguniangbayan.solano.gov.ph](https://sangguniangbayan.solano.gov.ph/) | Ordinances, Resolutions   |
+| LGU Santa Maria Official Website        | [santamariabulacan.gov.ph](https://santamariabulacan.gov.ph/)                                   | Services, Officials       |
+| Sangguniang Bayan ng Santa Maria        | [sangguniangbayan.santamariabulacan.gov.ph](https://sangguniangbayan.santamariabulacan.gov.ph/) | Ordinances, Resolutions   |
 | Bureau of Local Government Finance | [blgf.gov.ph](https://blgf.gov.ph/)                                       | Budget, Financial Reports |
 | Philippine Statistics Authority    | [psa.gov.ph](https://psa.gov.ph/)                                         | Demographics, Census      |
 | DTI CMCI Portal                    | [cmci.dti.gov.ph](https://cmci.dti.gov.ph/)                               | Competitive Index         |
@@ -440,26 +440,26 @@ See [LICENSE](LICENSE) for full details.
 
 | Channel  | Link                                                                      |
 | -------- | ------------------------------------------------------------------------- |
-| Website  | [bettersolano.org](https://bettersolano.org)                              |
-| Email    | volunteer@bettersolano.org                                                |
-| Facebook | [@bettersolano.org](https://www.facebook.com/bettersolano.org)            |
-| LinkedIn | [BetterSolano](https://www.linkedin.com/company/bettersolano/)            |
+| Website  | [bettersantamaria.org](https://bettersantamaria.org)                              |
+| Email    | volunteer@bettersantamaria.org                                                |
+| Facebook | [@bettersantamaria.org](https://www.facebook.com/bettersantamaria.org/)            |
+| LinkedIn | [BetterSantaMaria](https://www.linkedin.com/company/bettersantamaria/)            |
 | Discord  | [Join Community](https://discord.com/invite/qeSu7RJkjQ)                   |
-| GitHub   | [BetterSolano/bettersolano](https://github.com/BetterSolano/bettersolano) |
+| GitHub   | [BetterSantaMaria/bettersantamaria](https://github.com/josiahjezraelguevarra/BetterSantaMaria) |
 
 ## Acknowledgments
 
 - [BetterGov.ph](https://bettergov.ph) for the civic-tech initiative in the Philippines
 - [Abakada.org](https://abakada.org) for supporting civic technology efforts
-- LGU Solano for public data availability and transparency
+- LGU Santa Maria for public data availability and transparency
 - All volunteers and contributors who dedicate their time
 - Open-source community for the tools and libraries used
-- Citizens of Solano for their feedback and support
+- Citizens of Santa Maria for their feedback and support
 
 ---
 
-Made for the people of Solano, Nueva Vizcaya
+Made for the people of Santa Maria, Bulacan
 
 ## Developer
 
-[Ramon Logan Jr.](https://ramonloganjr.com/) is a UAE-based full-stack developer and IT professional specializing in web development, design, cloud services, and cybersecurity. He is the developer behind BetterSolano.org, [Abakada.org](https://abakada.org), and the founder of the small cloud-based solutions initiative, [HelloPinas.com](https://hellopinas.com). Ramon actively contributes to civic-tech efforts like [BetterGov.ph](https://bettergov.ph) and is an individual participant in the [OpenJS Foundation](https://openjsf.org/).
+[Ramon Logan Jr.](https://ramonloganjr.com/) is a UAE-based full-stack developer and IT professional specializing in web development, design, cloud services, and cybersecurity. He is the developer behind BetterSantaMaria.org, [Abakada.org](https://abakada.org), and the founder of the small cloud-based solutions initiative, [HelloPinas.com](https://hellopinas.com). Ramon actively contributes to civic-tech efforts like [BetterGov.ph](https://bettergov.ph) and is an individual participant in the [OpenJS Foundation](https://openjsf.org/).

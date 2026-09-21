@@ -220,8 +220,8 @@ const CONFIG = {
   EXCHANGE_RATE_TTL: 30 * 60 * 1000, // 30 minutes
   WEATHER_TTL: 15 * 60 * 1000, // 15 minutes
   TIME_UPDATE_INTERVAL: 1000, // 1 second
-  SOLANO_LAT: 16.5167,
-  SOLANO_LON: 121.1833,
+  SANTAMARIA_LAT: 14.8197,
+  SANTAMARIA_LON: 120.9610,
   CURRENCIES: ['USD', 'GBP', 'SAR', 'AED', 'JPY', 'CAD', 'AUD'],
   CACHE_KEYS: {
     EXCHANGE_RATES: 'infobar_exchange_rates',
@@ -382,7 +382,7 @@ const WeatherService = {
   async fetchWeather() {
     try {
       const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${CONFIG.SOLANO_LAT}&longitude=${CONFIG.SOLANO_LON}&current_weather=true`
+        `https://api.open-meteo.com/v1/forecast?latitude=${CONFIG.SANTAMARIA_LAT}&longitude=${CONFIG.SANTAMARIA_LON}&current_weather=true`
       );
 
       if (!response.ok) {
@@ -396,9 +396,9 @@ const WeatherService = {
           temperature: data.current_weather.temperature,
           timestamp: Date.now(),
           location: {
-            lat: CONFIG.SOLANO_LAT,
-            lon: CONFIG.SOLANO_LON,
-            name: 'Solano, Nueva Vizcaya',
+            lat: CONFIG.SANTAMARIA_LAT,
+            lon: CONFIG.SANTAMARIA_LON,
+            name: 'Santa Maria, Bulacan',
           },
         };
       }
@@ -453,9 +453,9 @@ const WeatherService = {
       temperature: null,
       timestamp: Date.now(),
       location: {
-        lat: CONFIG.SOLANO_LAT,
-        lon: CONFIG.SOLANO_LON,
-        name: 'Solano, Nueva Vizcaya',
+        lat: CONFIG.SANTAMARIA_LAT,
+        lon: CONFIG.SANTAMARIA_LON,
+        name: 'Santa Maria, Bulacan',
       },
     };
   },

@@ -6,6 +6,15 @@ Mimics Apache's mod_rewrite behavior for testing cPanel deployment locally
 
 import os
 import sys
+
+# Ensure UTF-8 output encoding for Windows consoles
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, unquote
 
@@ -84,8 +93,8 @@ def run_server(port=8888, directory='dist'):
     print(f"Server running at: http://localhost:{port}")
     print()
     print("Clean URLs supported:")
-    print("  /services/certificates  →  serves certificates.html")
-    print("  /legislative/resolution-framework  →  serves resolution-framework.html")
+    print("  /services/certificates  ->  serves certificates.html")
+    print("  /legislative/resolution-framework  ->  serves resolution-framework.html")
     print()
     print("Press Ctrl+C to stop")
     print("=" * 60)

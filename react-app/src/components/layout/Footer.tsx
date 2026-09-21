@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="footer-main-new">
           <div className="footer-brand">
             <img
-              src="/assets/images/logo/better-solano-logo-white.svg"
+              src="/assets/images/logo/better-santamaria-logo-white.svg"
               alt="BetterSantaMaria.org logo"
               className="footer-logo"
             />

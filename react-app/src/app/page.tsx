@@ -231,7 +231,7 @@ export default function HomePage() {
                 <div
                   className="weather-widget"
                   role="region"
-                  aria-label="Current weather in Solano"
+                  aria-label="Current weather in Santa Maria"
                 >
                   <div className="weather-current">
                     <div className="weather-current-icon">
@@ -263,7 +263,7 @@ export default function HomePage() {
                 <div
                   id="map-container"
                   role="application"
-                  aria-label="Interactive map of Solano, Nueva Vizcaya"
+                  aria-label="Interactive map of Santa Maria, Bulacan"
                   data-map-loaded="iframe"
                 >
                   <iframe
@@ -284,7 +284,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Brief History of Solano */}
+      {/* Brief History of Santa Maria */}
       <section className="section history-section">
         <div className="container">
           <div className="home-stats-v2-header">
@@ -634,8 +634,8 @@ export default function HomePage() {
               <div className="home-leader-badge">{t('title-mayor')}</div>
               <h3>Hon. Philip A. Dacayo</h3>
               <div className="home-leader-contacts">
-                <a href="mailto:mayor@solano.gov.ph">
-                  <i className="bi bi-envelope"></i> mayor@solano.gov.ph
+                <a href="mailto:mayor@santamariabulacan.gov.ph">
+                  <i className="bi bi-envelope"></i> mayor@santamariabulacan.gov.ph
                 </a>
                 <a href="tel:0783265002">
                   <i className="bi bi-telephone"></i> (078) 326-5002
@@ -646,8 +646,8 @@ export default function HomePage() {
               <div className="home-leader-badge">{t('title-vice-mayor')}</div>
               <h3>Hon. Eduardo D. Tiongson</h3>
               <div className="home-leader-contacts">
-                <a href="mailto:vicemayor@solano.gov.ph">
-                  <i className="bi bi-envelope"></i> vicemayor@solano.gov.ph
+                <a href="mailto:vicemayor@santamariabulacan.gov.ph">
+                  <i className="bi bi-envelope"></i> vicemayor@santamariabulacan.gov.ph
                 </a>
                 <a href="tel:0783265003">
                   <i className="bi bi-telephone"></i> (078) 326-5003
@@ -678,13 +678,13 @@ export default function HomePage() {
                 <span className="home-contact-v2-note">{t('contact-hours')}</span>
               </div>
             </a>
-            <a href="mailto:lgusolanonv@gmail.com" className="home-contact-v2-card">
+            <a href="mailto:lgusantamariabulacan@gmail.com" className="home-contact-v2-card">
               <div className="home-contact-v2-icon">
                 <i className="bi bi-envelope-fill"></i>
               </div>
               <div className="home-contact-v2-content">
                 <h3>{t('contact-email')}</h3>
-                <p className="home-contact-v2-value">lgusolanonv@gmail.com</p>
+                <p className="home-contact-v2-value">lgusantamariabulacan@gmail.com</p>
                 <span className="home-contact-v2-note">{t('contact-response')}</span>
               </div>
             </a>
@@ -695,15 +695,15 @@ export default function HomePage() {
               <div className="home-contact-v2-content">
                 <h3>{t('contact-address')}</h3>
                 <p className="home-contact-v2-value">{t('contact-municipal-hall')}</p>
-                <span className="home-contact-v2-note">Solano, Nueva Vizcaya 3708</span>
+                <span className="home-contact-v2-note">Santa Maria, Bulacan 3022</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solano Quiz CTA */}
-      <section className="quiz-cta-section" aria-label="Solano Quiz">
+      {/* Santa Maria Quiz CTA */}
+      <section className="quiz-cta-section" aria-label="Santa Maria Quiz">
         <div className="container">
           <div className="quiz-cta-inner">
             <div className="quiz-cta-animation" aria-hidden="true">
@@ -720,7 +720,7 @@ export default function HomePage() {
               <p className="quiz-cta-subtitle">{t('quiz-subtitle')}</p>
               <p className="quiz-cta-description">{t('quiz-description')}</p>
               <a
-                href="https://quiz.bettersolano.org/"
+                href="https://quiz.bettersantamaria.org/"
                 className="quiz-cta-btn"
                 target="_blank"
                 rel="noopener noreferrer"

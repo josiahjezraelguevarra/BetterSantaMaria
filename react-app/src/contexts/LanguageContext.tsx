@@ -167,7 +167,7 @@ const translations: Record<string, Record<string, string>> = {
     'health-pltciluis-a-tiam-medical-center': 'PLTCI-Luis A. Tiam Medical Center',
     'health-a-tertiary-level-philhealthaccredited-private':
       'A tertiary level, PhilHealth-accredited private hospital providing comprehensive medical services.',
-    'health-national-highway-solano': 'National Highway, Santa Maria',
+    'health-national-highway-santa-maria': 'National Highway, Santa Maria',
     'health-medical-mission-group-hospital-health-services':
       'Medical Mission Group Hospital & Health Services Cooperative',
     'health-also-known-as-new-mmg-hospital-providing-quality':
@@ -444,7 +444,7 @@ const translations: Record<string, Record<string, string>> = {
       'Empowering the people of Santa Maria with transparent access to the services, programs, and public funds of LGU Santa Maria.',
     'footer-quick-links': 'Quick Links',
     'footer-resources': 'Resources',
-    'footer-solano-quiz': 'Santa Maria Quiz',
+    'footer-santa-maria-quiz': 'Santa Maria Quiz',
     'footer-sitemap': 'Sitemap',
     'footer-citizens-charter': "Citizen's Charter",
     'footer-terms': 'Terms of Use',
@@ -637,7 +637,7 @@ const translations: Record<string, Record<string, string>> = {
     'health-pltciluis-a-tiam-medical-center': 'PLTCI-Luis A. Tiam Medical Center',
     'health-a-tertiary-level-philhealthaccredited-private':
       'A tertiary level, PhilHealth-accredited pribadong hospital nagbibigay ng komprehensibong mga serbisyong medikal.',
-    'health-national-highway-solano': 'Pambansa Highway, Santa Maria',
+    'health-national-highway-santa-maria': 'Pambansa Highway, Santa Maria',
     'health-medical-mission-group-hospital-health-services':
       'Medical Mission Group Hospital & Health Mga serbisyo Cooperative',
     'health-also-known-as-new-mmg-hospital-providing-quality':
@@ -919,7 +919,7 @@ const translations: Record<string, Record<string, string>> = {
       'Pagbibigay-kapangyarihan sa mga tao ng Santa Maria na may transparent na access sa mga serbisyo, programa, at pampublikong pondo ng LGU Santa Maria.',
     'footer-quick-links': 'Mga Mabilisang Link',
     'footer-resources': 'Mga Mapagkukunan',
-    'footer-solano-quiz': 'Santa Maria Quiz',
+    'footer-santa-maria-quiz': 'Santa Maria Quiz',
     'footer-sitemap': 'Mapa ng Site',
     'footer-citizens-charter': "Citizen's Charter",
     'footer-terms': 'Mga Tuntunin ng Paggamit',
