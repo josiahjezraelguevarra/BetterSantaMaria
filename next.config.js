@@ -3,7 +3,7 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: false,
+  trailingSlash: true,
   skipTrailingSlashRedirect: true,
 
   // Pin the workspace root to this app. The repo has two lockfiles
