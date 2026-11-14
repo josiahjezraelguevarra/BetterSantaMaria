@@ -1,53 +1,30 @@
 {
-  "name": "bettersantamaria-web",
+  "name": "bettersantamaria",
   "version": "1.0.0",
-  "description": "BetterSantaMaria.org - Civic Portal for LGU Santa Maria, Bulacan",
+  "private": true,
   "scripts": {
-    "dev": "python3 -m http.server 8000",
-    "admin": "node scripts/admin-server.mjs",
-    "build": "bash build.sh",
-    "build:major": "bash scripts/version.sh major && bash build.sh --no-bump",
-    "build:minor": "bash scripts/version.sh minor && bash build.sh --no-bump",
-    "serve": "python3 -m http.server 8000",
-    "serve:dist": "cd dist && python3 -m http.server 8080",
-    "version:major": "node scripts/bump-version.js major",
-    "version:minor": "node scripts/bump-version.js minor",
-    "version:patch": "node scripts/bump-version.js patch",
-    "version:check": "node scripts/bump-version.js",
-    "test": "playwright test",
-    "test:chrome": "playwright test --project=chrome",
-    "test:report": "playwright show-report",
-    "lighthouse": "lhci autorun",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "package": "bash scripts/package-cpanel.sh --build",
-    "package:only": "bash scripts/package-cpanel.sh"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint",
+    "prepare": "husky"
   },
-  "keywords": [
-    "santa-maria",
-    "bulacan",
-    "government",
-    "lgu",
-    "civic-tech"
-  ],
-  "author": "Josiah Jezrael Guevarra",
-  "license": "MIT",
+  "dependencies": {
+    "next": "^15.5.19",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.23.9",
-    "@babel/core": "^7.29.6",
-    "@babel/preset-env": "^7.23.9",
-    "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.61.0",
-    "clean-css-cli": "^5.6.3",
-    "core-js": "^3.40.0",
-    "html-minifier-terser": "^7.2.0",
-    "playwright": "^1.61.0",
-    "prettier": "^3.8.1",
-    "terser": "^5.44.1"
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.6.2",
+    "husky": "^9.1.7",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.4.5"
   },
   "overrides": {
-    "tmp": "0.2.7",
-    "js-yaml": "^4.2.0",
-    "uuid": "^11.1.1"
+    "postcss": "^8.5.10"
   }
 }

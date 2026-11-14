@@ -18,3 +18,5 @@ release/
 
 # Flat-file CMS local safety backups
 data/backups/
+
+*.tsbuildinfo

@@ -25,14 +25,14 @@ content = content.replace(
   "['en', 'fil', 'ilo']",
   "['en', 'fil']"
 );
-content = content.replace(/bettersolano_lang/g, 'bettersantamaria_lang');
+content = content.replace(/bettersantamaria_lang/g, 'bettersantamaria_lang');
 
 // 3. Rebrand text strings in en and fil
-content = content.replace(/BetterSolano\.org/g, 'BetterSantaMaria.org');
-content = content.replace(/BetterSolano/g, 'BetterSantaMaria');
-content = content.replace(/Solano, Nueva Vizcaya/g, 'Santa Maria, Bulacan');
-content = content.replace(/Solano/g, 'Santa Maria');
-content = content.replace(/Nueva Vizcaya/g, 'Bulacan');
+content = content.replace(/BetterSantaMaria\.org/g, 'BetterSantaMaria.org');
+content = content.replace(/BetterSantaMaria/g, 'BetterSantaMaria');
+content = content.replace(/Santa Maria, Bulacan/g, 'Santa Maria, Bulacan');
+content = content.replace(/Santa Maria/g, 'Santa Maria');
+content = content.replace(/Bulacan/g, 'Bulacan');
 
 // Emergency hotline updates in language file
 content = content.replace(/Pulis: \(078\) 326-5000/g, 'Pulis: (044) 815-2122');

@@ -1,106 +1,69 @@
 #!/usr/bin/env python3
 """
-Local Development Server with Clean URL Support
-Mimics Apache's mod_rewrite behavior for testing cPanel deployment locally
+Clean-URL Static Server for Next.js Export
+Serves files from out/ directory with automatic clean URL mapping:
+- /about -> out/about/index.html or out/about.html
+- /survey -> out/survey/index.html or out/survey.html
+- /contact -> out/contact/index.html or out/contact.html
 """
-
+import http.server
+import socketserver
 import os
 import sys
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from urllib.parse import urlparse, unquote
+import mimetypes
 
-class CleanURLHandler(SimpleHTTPRequestHandler):
-    """
-    Custom HTTP handler that supports clean URLs (without .html extension)
-    Mimics the .htaccess rewrite rules used in cPanel deployment
-    """
-    
-    def do_GET(self):
-        # Parse the URL path
-        parsed_path = urlparse(self.path)
-        path = unquote(parsed_path.path)
-        
-        # Remove trailing slash for non-root paths
-        if path != '/' and path.endswith('/'):
-            # Check if this is a directory with index.html
-            dir_path = '.' + path
-            index_path = dir_path + 'index.html'
-            if os.path.isdir(dir_path) and os.path.isfile(index_path):
-                # Serve index.html from directory
-                return super().do_GET()
-        
-        # Try to serve the file directly first
-        file_path = '.' + path
-        
-        # If path doesn't have extension and file doesn't exist
-        if not os.path.exists(file_path) and not path.endswith('/'):
-            # Try adding .html extension
-            html_path = file_path + '.html'
-            if os.path.isfile(html_path):
-                # Internally rewrite to serve the .html file
-                self.path = path + '.html'
-                if parsed_path.query:
-                    self.path += '?' + parsed_path.query
-                return super().do_GET()
-        
-        # If it's a directory, try index.html
-        if os.path.isdir(file_path):
-            index_path = os.path.join(file_path, 'index.html')
-            if os.path.isfile(index_path):
-                self.path = path.rstrip('/') + '/index.html'
-                if parsed_path.query:
-                    self.path += '?' + parsed_path.query
-                return super().do_GET()
-        
-        # Fall back to default behavior
-        return super().do_GET()
-    
-    def log_message(self, format, *args):
-        # Custom logging with color for clean URL rewrites
-        message = format % args
-        if '.html' not in self.path and 'GET' in message:
-            # This was a clean URL that got rewritten
-            print(f"\033[0;32m{self.address_string()}\033[0m - {message}")
-        else:
-            print(f"{self.address_string()} - {message}")
+PORT = 3000
+DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
 
-def run_server(port=8888, directory='dist'):
-    """Run the development server with clean URL support"""
-    
-    # Change to the specified directory
-    if directory != '.':
-        if not os.path.isdir(directory):
-            print(f"Error: Directory '{directory}' not found")
-            sys.exit(1)
-        os.chdir(directory)
-    
-    server_address = ('', port)
-    httpd = HTTPServer(server_address, CleanURLHandler)
-    
-    print("=" * 60)
-    print("Clean URL Development Server")
-    print("=" * 60)
-    print(f"Serving from: {os.getcwd()}")
-    print(f"Server running at: http://localhost:{port}")
-    print()
-    print("Clean URLs supported:")
-    print("  /services/certificates  →  serves certificates.html")
-    print("  /legislative/resolution-framework  →  serves resolution-framework.html")
-    print()
-    print("Press Ctrl+C to stop")
-    print("=" * 60)
-    
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        print("\nServer stopped.")
-        httpd.server_close()
+mimetypes.add_type('application/manifest+json', '.webmanifest')
+mimetypes.add_type('image/svg+xml', '.svg')
+mimetypes.add_type('application/javascript', '.js')
+mimetypes.add_type('text/css', '.css')
+
+class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
+
+    def translate_path(self, path):
+        # Base translated path in out/
+        translated = super().translate_path(path)
+        
+        # If the file exists directly, return it
+        if os.path.exists(translated) and not os.path.isdir(translated):
+            return translated
+
+        # If it's a directory with index.html, return index.html
+        if os.path.isdir(translated):
+            idx = os.path.join(translated, 'index.html')
+            if os.path.exists(idx):
+                return idx
+
+        # Try appending .html (clean URL /about -> out/about.html)
+        if not path.endswith('/'):
+            html_candidate = translated + '.html'
+            if os.path.exists(html_candidate):
+                return html_candidate
+
+            # Try directory/index.html (clean URL /about -> out/about/index.html)
+            dir_candidate = os.path.join(translated, 'index.html')
+            if os.path.exists(dir_candidate):
+                return dir_candidate
+
+        # 404 fallback if available
+        fallback_404 = os.path.join(DIRECTORY, '404.html')
+        if os.path.exists(fallback_404):
+            return fallback_404
+
+        return translated
+
+    def end_headers(self):
+        # Enable CORS and disable aggressive caching for local preview
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Cache-Control', 'no-cache, must-revalidate')
+        super().end_headers()
 
 if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser(description='Local server with clean URL support')
-    parser.add_argument('-p', '--port', type=int, default=8888, help='Port number (default: 8888)')
-    parser.add_argument('-d', '--directory', type=str, default='dist', help='Directory to serve (default: dist)')
-    args = parser.parse_args()
-    
-    run_server(port=args.port, directory=args.directory)
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else PORT
+    with socketserver.TCPServer(("", port), CleanURLHandler) as httpd:
+        print(f"Serving static export from '{DIRECTORY}' at http://localhost:{port}")
+        httpd.serve_forever()
