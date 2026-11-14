@@ -1,4 +1,4 @@
-# BetterSantaMaria.org
+# BetterSantaMaria.org (NOT UPDATED)
 
 A civic-tech initiative providing transparent access to municipal services, programs, and public funds of LGU Santa Maria, Bulacan, Philippines.
 
